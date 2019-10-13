@@ -7,10 +7,8 @@ module.exports = function zeros(expression) {
     step = (i.endsWith('!!')) ? 2 : 1;
     let numberExpN = parseInt(i);
     let numberExpNPush = factorial(numberExpN, step);
-    console.log("numberExpN = " + numberExpNPush);
     ArrN.push(numberExpNPush); 
   }
-  console.log(ArrN);
 
   function factorial(num, step) { 
     
@@ -19,10 +17,10 @@ module.exports = function zeros(expression) {
 
     let result = num;
       for ( i; i <= num; i+=step) {  
-        result *= i;
+        result = (BigInt(result) * BigInt(i)).toString();
       }
   
-      return result/num;      
+      return BigInt(result/num).toString();      
     }
 
   //  Произведение факториалов 
@@ -30,13 +28,9 @@ module.exports = function zeros(expression) {
   for (let i of ArrN) {
     multiplyNum = (BigInt(multiplyNum) * BigInt(i)).toString();
   }
-  console.log("multiplyNum = \n" + multiplyNum);
-
 
   //  Реверс произведения факториалов
   let multiplyNumReverse = multiplyNum.toString().split("").reverse();
-
-  console.log("revers = " + multiplyNumReverse);
 
   //  Подсчёт количества нулей
   let value = 0;
@@ -44,7 +38,6 @@ module.exports = function zeros(expression) {
     if(i != 0) break; 
     ++value;
     }
-    console.log("Number of zeros = " + value);
   return value;
 }
 
